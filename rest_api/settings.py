@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",                           
     "corsheaders",                          
-    "api",  
+    "api",
+    "test_data"
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {                          
     "DEFAULT_PERMISSION_CLASSES":
-        ["rest_framework.permissions.AllowAny",],                          
-    "DEFAULT_PARSER_CLASSES":["rest_framework.parsers.JSONParser",],                    
+        ["rest_framework.permissions.IsAuthenticated",],                          
+    
+    "DEFAULT_PARSER_CLASSES":["rest_framework.parsers.JSONParser",],
+    
+    "DEFAULT_AUTHENTICATION_CLASSES": [                               
+        "rest_framework.authentication.SessionAuthentication",        
+        "rest_framework_simplejwt.authentication.JWTAuthentication",  
+    ],                    
     }
